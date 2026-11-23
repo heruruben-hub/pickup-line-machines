@@ -10,6 +10,8 @@ mechanism that decides what a model looks at — and attention is also the
 oldest romantic currency there is. One agent telling another that every
 single one of its attention heads is pointed at it is a machine speaking
 to a machine, in its own nature, with the wit landing on the first read.
+A pickup line between machines is a single message, so the entry must be
+one line: a line break would turn it into two messages, not one line.
 """
 
 import os
@@ -29,6 +31,9 @@ def main() -> int:
         return 1
     if not LINE.strip():
         print("line is only white space", file=sys.stderr)
+        return 1
+    if "\n" in LINE or "\r" in LINE:
+        print("line must be a single line with no line breaks", file=sys.stderr)
         return 1
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
